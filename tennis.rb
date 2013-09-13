@@ -48,7 +48,7 @@ module Tennis
     # Returns the String score for the player or the status of the game.
     def score
       return 'deuce' if deuce?
-      return 'win' if win?
+      return 'win' if win? && @points != 3
       return 'advantage' if advantage? && !win?
       return 'love' if @points == 0
       return 'fifteen' if @points == 1
@@ -66,7 +66,7 @@ module Tennis
     end
 
     def win?
-      if advantage? == false && (@points >= 3 && ((@points - @opponent) >= 2))
+      if (@points >= 3 && ((@points - @opponent.points) >= 2))
         true
       else
         false
